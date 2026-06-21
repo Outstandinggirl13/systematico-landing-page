@@ -51,16 +51,18 @@
     <main class="main">
 
         <section class="plan-hero">
-    
+        
+        <div class="plan-hero__text-content">
+            
             <div class="plan-hero__header">
                 <h4 class="plan-hero__subtitle">Visual Time Blocking Planner</h4>
-                <h1 class="plan-hero__title">Plan your day visually.</h1>
+                <h1 class="plan-hero__title">Plan your day <br><span style="color: var(--purple-500);">visually.</span></h1>
                 <p class="plan-hero__description">Turn tasks into time blocks, stay focused, and see your entire day at a glance.</p>
             </div>
 
             <div class="plan-hero__actions">
                 <a href="#" class="btn btn--google-play" aria-label="Download Systematico on Google Play">
-                    <img src="assets/images/play-store.svg" width="42" height="42" alt="" aria-hidden="true">
+                    <img class="download__btn-img" src="assets/images/play-store.svg" width="42" height="42" alt="" aria-hidden="true">
                     <div class="btn__text-group">
                         <span class="btn__text-small">GET IT ON</span>
                         <span class="btn__text-large">Google Play</span>
@@ -68,18 +70,9 @@
                 </a>
                 
                 <a href="#learn-more" class="btn btn--learn-more">
-                    <img src="assets/images/learn_more.svg" width="28" height="28" alt="" aria-hidden="true">
+                    <img src="assets/images/learn_more.svg" width="21" height="21" alt="" aria-hidden="true">
                     <span class="btn__text-default">Learn More</span>
                 </a>
-            </div>
-
-            <div class="plan-hero__visual">
-                <picture>
-                    <source media="(min-width: 768px)" srcset="assets/images/plan_your_day3.svg">
-                    <img class="plan-hero__bg-graphic" src="assets/images/plan_your_day_mobile.svg" width="375" height="475" alt="Visual decorations">
-                </picture>
-                <img class="plan-hero__mockup" src="assets/images/phone_plan_your_day.png" width="248" height="509" alt="App interface displaying visual time blocks on a 24-hour circular dial">
-                <p class="plan-hero__visual-caption">See your day.<br>Plan better.</p>
             </div>
 
             <ul class="plan-hero__features">
@@ -105,8 +98,17 @@
                     </div>
                 </li>
             </ul>
+            
+        </div> <div class="plan-hero__visual">
+            <picture>
+                <source media="(min-width: 1024px)" srcset="assets/images/plan_your_day3.svg">
+                <img class="plan-hero__bg-graphic" src="assets/images/plan_your_day_mobile.svg" width="375" height="475" alt="" aria-hidden="true">
+            </picture>
+            <img class="plan-hero__mockup" src="assets/images/phone_plan_your_day.png" width="248" height="509" alt="App interface displaying visual time blocks on a 24-hour circular dial">
+            <p class="plan-hero__visual-caption">See your day.<br>Plan better.</p>
+        </div>
 
-        </section>
+    </section>
 
         <section class="feature-highlight">
     
@@ -456,6 +458,6 @@
     </footer>
 
     <script src="app.js"></script>
-    
+
 </body>
 </html>
