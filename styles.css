@@ -150,9 +150,12 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between; /* Pushes brand to left, burger to right */
-    padding: 8px 24px;
-    max-width: 1440px; /* Prevents header from stretching infinitely on huge screens */
+    padding: 0px 24px;
     margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 999; 
+    background-color: var(--white);
 }
 
 .header__brand {
@@ -183,12 +186,37 @@ body {
     padding: 8px; /* Increases the clickable area for thumbs */
 }
 
+.header.is-open .header__navigation {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    top: 100%; /* Pushes it exactly below the header */
+    left: 0;
+    right: 0;
+    background-color: var(--white);
+    padding: 32px 24px;
+    gap: 32px;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+}
+
+/* Make the links larger and easier to tap on mobile */
+.header.is-open .header__link {
+    font-family: var(--font-base);
+    font-size: 18px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+    padding: 8px 0;
+}
+
 
 /* 2. Desktop Breakpoint */
 @media (min-width: 1024px) {
     
     .header {
-        padding: 24px 48px;
+        padding: 0px 48px;
     }
 
     /* Hide mobile burger menu */
@@ -201,6 +229,7 @@ body {
         display: flex;
         align-items: center;
         gap: 40px; /* Space between links */
+        box-shadow: none;
     }
 
     .header__link {
@@ -222,7 +251,7 @@ body {
         gap: 8px;
         background-color: var(--purple-550);
         color: var(--white);
-        padding: 8px 16px;
+        padding: 6px 16px;
         border-radius: 100px; /* Creates the perfect pill shape */
         cursor: pointer;
         transition: background-color 0.2s ease, transform 0.1s ease;
