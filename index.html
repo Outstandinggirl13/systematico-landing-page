@@ -36,7 +36,10 @@
             <a href="#contact" class="header__link">Contact</a>
         </nav>
 
-        <a href="#" class="download__btn download__btn--gpone" role="button">Download on Google Play</a>
+        <button class="download__btn download__btn--gpone" aria-label="Download">
+            <img src="assets/images/play-store.svg" width="30" height="30" alt="Google Play icon">
+            <p class="download__btn__description">Download on Google Play</p>
+        </button>
 
         <button class="header__burger-btn" aria-label="Open navigation menu">
             <img src="assets/images/burger_menu.svg" width="27" height="20" alt="" aria-hidden="true">
@@ -45,6 +48,63 @@
     </header>
     
     <main class="main">
+
+        <section class="plan-hero">
+    
+            <div class="plan-hero__header">
+                <h2 class="plan-hero__subtitle">Visual Time Blocking Planner</h2>
+                <h1 class="plan-hero__title">Plan your day visually.</h1>
+                <p class="plan-hero__description">Turn tasks into time blocks, stay focused, and see your entire day at a glance.</p>
+            </div>
+
+            <div class="plan-hero__actions">
+                <a href="#" class="btn btn--google-play" aria-label="Download Systematico on Google Play">
+                    <img src="assets/images/play-store.svg" width="42" height="42" alt="" aria-hidden="true">
+                    <div class="btn__text-group">
+                        <span class="btn__text-small">GET IT ON</span>
+                        <span class="btn__text-large">Google Play</span>
+                    </div>
+                </a>
+                
+                <a href="#learn-more" class="btn btn--learn-more">
+                    <img src="assets/images/learn_more.svg" width="28" height="28" alt="" aria-hidden="true">
+                    <span class="btn__text-default">Learn More</span>
+                </a>
+            </div>
+
+            <div class="plan-hero__visual">
+                <picture>
+                    <source media="(min-width: 768px)" srcset="assets/images/plan_your_day3.svg">
+                    <img class="plan-hero__mockup" src="assets/images/plan_your_day_mobile.svg" width="375" height="475" alt="App interface displaying visual time blocks on a 24-hour circular dial">
+                </picture>
+                <p class="plan-hero__visual-caption">See your day.<br>Plan better.</p>
+            </div>
+
+            <ul class="plan-hero__features">
+                <li class="feature-item">
+                    <img class="feature-item__icon" src="assets/images/visual_schedule.svg" width="50" height="50" alt="" aria-hidden="true">
+                    <div class="feature-item__text">
+                        <h3 class="feature-item__title">Visual Schedule</h3>
+                        <p class="feature-item__description">See your day at a glance</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <img class="feature-item__icon" src="assets/images/stay_focused.svg" width="50" height="50" alt="" aria-hidden="true">
+                    <div class="feature-item__text">
+                        <h3 class="feature-item__title">Stay Focused</h3>
+                        <p class="feature-item__description">Time block what matters</p>
+                    </div>
+                </li>
+                <li class="feature-item">
+                    <img class="feature-item__icon" src="assets/images/build_better_habits.svg" width="50" height="50" alt="" aria-hidden="true">
+                    <div class="feature-item__text">
+                        <h3 class="feature-item__title">Build Better Habits</h3>
+                        <p class="feature-item__description">Track progress and be consistent</p>
+                    </div>
+                </li>
+            </ul>
+
+        </section>
 
     </main>
 </body>
