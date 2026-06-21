@@ -121,8 +121,8 @@ ol {
     --white: hsl(0, 0%, 100%);
       
     --font-base: 'Inter', sans-serif;
-    --font-accent-1: 'Inter', sans-serif;
-    --font-accent-2: 'Inter', sans-serif;
+    --font-accent-1: 'Borel', sans-serif;
+    --font-accent-2: 'Kalam', sans-serif;
 
 }
    
@@ -141,3 +141,109 @@ body {
    LAYOUT & ELEMENTS
    =========================== */
 
+   /* ===========================
+   HEADER COMPONENT
+   =========================== */
+
+/* 1. Mobile Base Styles (Default) */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Pushes brand to left, burger to right */
+    padding: 8px 24px;
+    max-width: 1440px; /* Prevents header from stretching infinitely on huge screens */
+    margin: 0 auto;
+}
+
+.header__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between logo and text */
+}
+
+.header__title {
+    font-family: var(--font-accent-1); /* Borel */
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--gray-900);
+    padding-top: 16px; /* Small nudge to visually align script font with the logo */
+}
+
+/* Hide desktop elements on mobile */
+.header__navigation,
+.download__btn {
+    display: none; 
+}
+
+.header__burger-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    padding: 8px; /* Increases the clickable area for thumbs */
+}
+
+
+/* 2. Desktop Breakpoint */
+@media (min-width: 1024px) {
+    
+    .header {
+        padding: 24px 48px;
+    }
+
+    /* Hide mobile burger menu */
+    .header__burger-btn {
+        display: none;
+    }
+
+    /* Reveal and style navigation */
+    .header__navigation {
+        display: flex;
+        align-items: center;
+        gap: 40px; /* Space between links */
+    }
+
+    .header__link {
+        font-family: var(--font-base); /* Inter */
+        font-weight: 700; /* Bold */
+        font-size: 14px;  /* Updated from 16px */
+        color: var(--gray-900);
+        transition: color 0.2s ease;
+    }
+
+    .header__link:hover {
+        color: var(--purple-550);
+    }
+
+    /* Reveal and style download button */
+    .download__btn {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background-color: var(--purple-550);
+        color: var(--white);
+        padding: 8px 16px;
+        border-radius: 100px; /* Creates the perfect pill shape */
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+    }
+
+    .download__btn-img {
+        filter: brightness(0) invert(1);
+    }
+
+    .download__btn:hover {
+        background-color: var(--purple-600);
+    }
+
+    .download__btn:active {
+        transform: scale(0.98); /* Satisfying click effect */
+    }
+
+    .download__btn__description {
+        font-family: var(--font-base); /* Inter */
+        font-weight: 700; /* Bold */
+        font-size: 14px;  /* Updated from 16px */
+        color: var(--white);
+    }
+}
