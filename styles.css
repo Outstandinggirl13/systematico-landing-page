@@ -735,6 +735,124 @@ body {
     display: none;
 }
 
+/* ===========================
+   ADDITIONAL FEATURES SECTION
+   =========================== */
+
+.additional-features {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* 1. Base Grid */
+.additional-features__grid {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* 2. Cards Setup */
+.additional-features .feature-card {
+    display: block; 
+    position: relative;
+    padding: 0px clamp(18px, calc(-16.364px + 10.909vw), 24px);
+    border-radius: 24px;
+    min-height: 205px; 
+    max-width: 340px;
+    overflow: hidden; /* Cleanly crops images at the card edge */
+    box-shadow: none; 
+}
+
+/* Applying specific backgrounds and subtle borders */
+.feature-card--light-dark { 
+    background-color: var(--purple-150); 
+    border: 2px solid var(--purple-300); 
+}
+
+.feature-card__title-highlight, 
+.feature-card__description-highlight {
+    /* background-color: var(--purple-150); */
+    max-width: clamp(60px, calc(-231.429px + 97.143vw), 128px);
+}
+
+.feature-card--recurring { 
+    background-color: var(--green-150); 
+    border: 2px solid var(--green-300); 
+}
+.feature-card--themes { 
+    background-color: var(--pink-150); 
+    border: 2px solid var(--pink-300); 
+}
+
+/* 3. Text & Content Layer */
+.additional-features .feature-card__content {
+    position: relative;
+    z-index: 2; /* Keeps text above images */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    
+    /* STRICT LIMIT: Forces text to stay on the left so it never hits the phones */
+    max-width: 50%; 
+}
+
+.additional-features .feature-card__icon {
+    margin-bottom: 24px;
+    object-fit: contain;
+}
+
+/* Adjusted to your requested 16px/14px sizing */
+.additional-features .feature-card__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: clamp(12px, calc(-18px + 10vw), 16px); 
+    font-weight: 800;
+    color: var(--gray-900);
+    margin: 0 0 8px 0;
+    line-height: 1.2;
+}
+
+.additional-features .feature-card__description {
+    font-family: var(--font-base, sans-serif);
+    font-size: clamp(10px, calc(-20px + 10vw), 14px); 
+    font-weight: 500;
+    color: var(--gray-900);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.feature-card__swatches {
+    /* Forces swatches perfectly to the bottom-left corner */
+    margin-top: auto; 
+    padding-top: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+/* 4. Mockups Layer */
+.additional-features .feature-card__mockup {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    object-fit: contain;
+    transform-origin: bottom right;
+}
+
+.feature-card__mockup-highlight {
+    top: 0px;
+}
+
+/* Default Mobile Positioning */
+.feature-card--light-dark .feature-card__mockup { width: 170px; right: -10px; }
+.feature-card--recurring .feature-card__mockup  { width: 140px; right: -10px; }
+.feature-card--themes .feature-card__mockup     { width: 120px; right: 0; }
+
 /* TABLETS */
 @media (min-width: 525px) {
 
@@ -864,6 +982,18 @@ body {
         right: 260px; */
         bottom: -20px;
         right: clamp(130px, calc(-225.839px + 47.445vw), 260px);
+    }
+
+    .additional-features__grid {
+        flex-direction: row; 
+        flex-wrap: wrap; /* FORCES the cards to wrap to a new line */
+        justify-content: center; /* Centers the leftover 3rd card on the bottom row */
+    }
+
+    .additional-features .feature-card {
+        /* Force cards to be 50% width minus half of the 24px gap */
+        flex: 0 0 calc(50% - 12px);
+        max-width: calc(50% - 12px);
     }
 }
 
@@ -1212,5 +1342,58 @@ body {
         right: 180px; */
         bottom: -20px;
         right: clamp(-20px, calc(-512.308px + 48.077vw), 180px);
+    }
+
+   .additional-features {
+        padding: 100px 48px;
+    }
+
+    .additional-features__grid {
+        flex-direction: row; 
+        align-items: stretch; /* Makes all 3 cards equal height */
+        margin: 0;
+    }
+
+    /* REORDERING: Swaps Themes and Recurring to match the target design */
+    .feature-card--light-dark { order: 1; }
+    .feature-card--themes     { order: 2; }
+    .feature-card--recurring  { order: 3; }
+
+    /* Desktop Card Geometry */
+    .additional-features .feature-card {
+        flex: 1; 
+        min-height: 240px; 
+        padding: 0px 32px;
+        max-width: 100%;
+    }
+
+    /* Tighten text limit to 45% on desktop to guarantee zero overlap */
+    .additional-features .feature-card__content {
+        max-width: 45%;
+    }
+
+    /* --- Desktop Mockup Adjustments --- */
+    
+    .feature-card--light-dark .feature-card__mockup {
+        width: 55%; 
+        max-width: 195px; /* Bound to HTML original width */
+        right: 0; /* Snaps firmly to the right edge */
+    }
+
+    .feature-card--themes .feature-card__mockup {
+        width: 45%;
+        max-width: 133px;
+        right: 16px; /* Gentle 16px inset off the right border */
+    }
+
+    .feature-card__title-highlight, 
+    .feature-card__description-highlight {
+        max-width: 100%;
+    }
+
+    .feature-card--recurring .feature-card__mockup {
+        width: 55%;
+        max-width: 160px;
+        right: 0; 
     }
 }
