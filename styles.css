@@ -296,7 +296,6 @@ body {
     z-index: 2;
     
     /* Forces text exactly below the phone on mobile */
-    /* bottom: clamp(-40px, calc(66.667px - 26.667vw), 0px); */
     bottom: clamp(-20px, calc(300px + -80vw), 60px);
     right: clamp(15px, calc(-136.243px + 50.414vw), 380px); 
     /* Nudges it up/down to align perfectly with the arrow */
@@ -432,16 +431,41 @@ body {
 
 @media (min-width: 525px) {
 
-    .plan-hero__actions  { 
+.plan-hero {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        /* The gap: 40px from mobile is still doing the heavy lifting here */
+    }
+
+    .plan-hero__header {
+        width: 100%;
+    }
+
+    .plan-hero__actions { 
+        width: 100%;
         flex-direction: row; 
-        /* Your exact requested spacing! */
         margin-top: 12px; 
-        margin-bottom: 40px; 
+        /* Removed margin-bottom so it doesn't double-up with the 40px gap */
     }
 
     .plan-hero__features {
-        width: 478px;
-        margin: 0 auto;
+        /* 50% minus half of the 40px gap */
+        width: calc(50% - 60px);
+        margin: 0;
+        order: 3; /* Forces it left */
+    }
+
+    .plan-hero__visual {
+        /* 50% minus half of the 40px gap */
+        width: calc(50% - 20px);
+        order: 4; /* Forces it right */
+        padding-bottom: 140px; 
+    }
+
+    .plan-hero__visual-caption {
+        bottom: clamp(0px, calc(299.219px + -39.063vw), 50px);
+        right: clamp(0px, calc(-163.134px + 27.65vw), 120px); 
     }
 }
 
@@ -506,6 +530,7 @@ body {
     }
 
    .plan-hero {
+        flex-wrap: nowrap; /* Turn off tablet wrapping */
         flex-direction: row; 
         align-items: center;
         justify-content: space-between;
@@ -521,30 +546,37 @@ body {
         max-width: 600px; 
     }
 
-    /* Reset order properties for desktop columns */
-    .plan-hero__header   { order: 0; }
-    
-    .plan-hero__actions  { 
+    /* Reset tablet widths & order for the left column items */
+    .plan-hero__header { 
         order: 0; 
+        width: auto; 
+    }
+    
+    .plan-hero__actions { 
+        order: 0; 
+        width: auto;
         flex-direction: row; 
-        /* Your exact requested spacing! */
         margin-top: 48px; 
         margin-bottom: 40px; 
     }
     
-    .plan-hero__visual {
-        order: 0;
-        flex: 1;
-        padding-bottom: 0; /* Reset mobile padding buffer */
-    }
-    
     .plan-hero__features { 
         order: 0; 
+        width: auto;
+        padding-right: 0; /* Reset tablet padding */
         display: flex; 
         flex-direction: row; 
         gap: 32px; 
     }
 
+    /* Reset tablet constraints for the right column visual */
+    .plan-hero__visual {
+        order: 0;
+        width: auto;
+        flex: 1;
+        padding-bottom: 0; 
+    }
+    
     /* Desktop Typography Overrides */
     .plan-hero__title { font-size: 70px; }
     .btn__text-small { font-size: 13px; }
