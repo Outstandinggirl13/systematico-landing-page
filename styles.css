@@ -653,6 +653,88 @@ body {
     margin: 0;
 }
 
+/* ===========================
+   CIRCULAR RATIONALE SECTION
+   =========================== */
+
+/* 1. Base Layout (Mobile First) */
+.circular-rationale {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+    /* Prevent any absolute items from creating horizontal scroll on mobile */
+    overflow-x: hidden; 
+}
+
+/* --- Typography & Header --- */
+.circular-rationale__header {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.circular-rationale__subtitle {
+    font-family: var(--font-base, sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.circular-rationale__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--gray-900);
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.circular-rationale__description {
+    font-family: var(--font-base, sans-serif);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+/* --- Checklist (Reuses styles from previous sections) --- */
+.circular-rationale__benefits {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Visuals & Clock --- */
+.circular-rationale__visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative; /* The anchor point for the callout text */
+    width: 100%;
+}
+
+.circular-rationale__clock-img {
+    width: 100%;
+    max-width: 340px; /* Scaled for mobile */
+    height: auto;
+}
+
+/* Hide the callout text entirely on mobile per the design */
+.circular-rationale__callouts {
+    display: none;
+}
+
 /* TABLETS */
 @media (min-width: 525px) {
 
@@ -697,6 +779,91 @@ body {
     .features-overview__cards {
         width: clamp(477px, calc(-48px + 100vw), 576px);
         margin: 0 auto;
+    }
+}
+
+@media (min-width: 750px) {
+
+    .circular-rationale {
+        gap: 80px;
+    }
+    /* --- Desktop Callouts Positioning --- */
+    .circular-rationale__callouts {
+        display: block; /* Turn them back on */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allows clicks to pass through to the SVG */
+    }
+
+    .callout {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap; /* Prevents the text from wrapping onto two lines */
+    }
+
+    .callout__title {
+        font-family: var(--font-base, sans-serif);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--gray-900);
+        line-height: 1.2;
+    }
+
+    .callout__text {
+        font-family: var(--font-base, sans-serif);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--gray-900);
+        line-height: 1.4;
+    }
+
+     .callout--personal {
+        /* top: -40px;
+        left: 120px; */
+        /* top: -40px;
+        left: 200px; */
+        top: -40px;
+        left: clamp(120px, calc(-263.212px + 51.095vw), 260px);
+    }
+
+    .callout--focus {
+        /* bottom: 40px;
+        left: 100px; */
+        /* bottom: 40px;
+        left: 220px; */
+        bottom: 40px;
+        left: clamp(100px, calc(-228.467px + 43.796vw), 220px);
+    }
+
+    .callout--sleep {
+        /* top: -30px;
+        right: 100px; */
+        /* top: -30px;
+        right: 240px; */
+        top: -30px;
+        right: clamp(100px, calc(-283.212px + 51.095vw), 240px);
+    }
+
+    .callout--learning {
+        /* bottom: 90px;
+        right: 70px; */
+        /* bottom: 90px;
+        right: 200px; */
+        bottom: 90px;
+        right: clamp(70px, calc(-285.839px + 47.445vw), 200px);
+    }
+
+    .callout--meetings {
+        /* bottom: -20px;
+        right: 130px; */
+        /* bottom: -20px;
+        right: 260px; */
+        bottom: -20px;
+        right: clamp(130px, calc(-225.839px + 47.445vw), 260px);
     }
 }
 
@@ -919,5 +1086,131 @@ body {
         flex: 1; /* Forces all three cards to be the exact same width */
         max-width: 400px; /* Prevents them from stretching infinitely on ultra-wide screens */
         padding: 32px 24px; /* Slightly more vertical breathing room on desktop */
+    }
+
+    /* Magic CSS Grid: No HTML changes required! */
+    .circular-rationale {
+        display: grid;
+        /* Left column gets a max width of ~420px, right column fills the rest */
+        grid-template-columns: minmax(320px, 420px) 1fr;
+        grid-template-rows: auto auto; /* Two rows for Header and Checklist */
+        align-content: center;
+        padding: 100px 48px;
+        gap: 0 80px; /* 0 vertical gap (managed by padding), 80px horizontal gap */
+        overflow-x: visible; /* Allow callouts to bleed slightly if needed */
+    }
+
+    /* Assign elements to the grid */
+    .circular-rationale__header {
+        grid-column: 1;
+        grid-row: 1;
+        align-self: flex-end; /* Pushes text down toward the checklist */
+        padding-bottom: 48px; /* Creates the space between the text and checklist */
+    }
+
+    .circular-rationale__benefits {
+        grid-column: 1;
+        grid-row: 2;
+        align-self: flex-start; /* Keeps checklist pinned near the header */
+    }
+
+    .circular-rationale__visual {
+        grid-column: 2;
+        /* Tell the visual to span BOTH the header and benefits rows */
+        grid-row: 1 / span 2; 
+        justify-self: center;
+        align-self: center;
+    }
+
+    /* Desktop Typography Scale */
+    .circular-rationale__title { font-size: 56px; }
+
+    /* Scale up the graphic wrapper */
+    .circular-rationale__clock-img {
+        max-width: 450px; 
+    }
+
+    /* --- Desktop Callouts Positioning --- */
+    .circular-rationale__callouts {
+        display: block; /* Turn them back on */
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allows clicks to pass through to the SVG */
+    }
+
+    .callout {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        white-space: nowrap; /* Prevents the text from wrapping onto two lines */
+    }
+
+    .callout__title {
+        font-family: var(--font-base, sans-serif);
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--gray-900);
+        line-height: 1.2;
+    }
+
+    .callout__text {
+        font-family: var(--font-base, sans-serif);
+        font-size: 14px;
+        font-weight: 400;
+        color: var(--gray-900);
+        line-height: 1.4;
+    }
+
+    /* Coordinate Mapping
+       Note: These percentages are relative to the bounding box of your SVG. 
+       If your SVG includes the connecting lines inside the file itself, you may 
+       need to nudge these percentages slightly so the text sits perfectly at the dots.
+    */
+    .callout--personal {
+        /* top: -40px;
+        left: -60px;  */
+        /* top: -40px;
+        left: 80px;  */
+        top: -40px;
+        left: clamp(-60px, calc(-404.615px + 33.654vw), 80px);
+    }
+
+    .callout--focus {
+        /* bottom: 40px;
+        left: -40px; */
+        /* bottom: 40px;
+        left: 120px; */
+        bottom: 40px;
+        left: clamp(-40px, calc(-433.846px + 38.462vw), 120px);
+    }
+
+    .callout--sleep {
+        /* top: -40px;
+        right: -30px; */
+        /* top: -30px;
+        right: 120px; */
+        top: clamp(-40px, calc(-64.615px + 2.404vw), -30px);
+        right: clamp(-30px, calc(-399.231px + 36.058vw), 120px);
+    }
+
+    .callout--learning {
+        /* bottom: 90px;
+        right: -40px; */
+        /* bottom: 100px;
+        right: 90px; */
+        bottom: clamp(90px, calc(65.385px + 2.404vw), 100px);
+        right: clamp(-40px, calc(-360px + 31.25vw), 90px);
+    }
+
+    .callout--meetings {
+        /* bottom: -20px;
+        right: -20px; */
+        /* bottom: -20px;
+        right: 180px; */
+        bottom: -20px;
+        right: clamp(-20px, calc(-512.308px + 48.077vw), 180px);
     }
 }
