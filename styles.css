@@ -224,28 +224,92 @@ body {
     display: flex;
     flex-direction: column;
     padding: 40px 24px;
-    gap: 40px; /* This single gap will now evenly space all 4 elements! */
+    gap: 40px; 
     max-width: 1440px;
     margin: 0 auto;
     overflow: hidden; 
 }
 
-/* THE MAGIC TRICK: "Unwraps" the children for mobile layout */
+/* THE MAGIC TRICK: "Unwraps" the text container */
 .plan-hero__text-content {
     display: contents; 
 }
 
-/* Now we can explicitly order the elements! */
+/* Explicit Mobile Order */
 .plan-hero__header   { order: 1; }
-.plan-hero__actions  { order: 2; }
-.plan-hero__visual   { order: 3; } /* Forces the phone ABOVE the features */
-.plan-hero__features { order: 4; }
+
+.plan-hero__actions  { 
+    order: 2; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+}
+
+/* The reliable anchor point */
+.plan-hero__visual {
+    order: 3;
+    position: relative; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 0;
+    /* Buffer to prevent the arrow and text from crashing into features */
+    padding-bottom: 140px; 
+}
+
+.plan-hero__features { 
+    order: 4; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 16px; 
+}
+
+/* --- Visuals & Mockup --- */
+
+/* Responsive Background Blob */
+.plan-hero__bg-graphic,
+.plan-hero__visual picture {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 120%;
+    max-width: 500px;
+    z-index: -1;
+}
+
+.plan-hero__mockup {
+    /*width: clamp(200px, calc(120px + 32vw), 248px);*/
+    width: 100%;
+    max-width: 260px;
+    z-index: 1;
+}
+
+/* Bulletproof Mobile Caption */
+.plan-hero__visual-caption {
+    font-family: var(--font-accent-2); /* Kalam */
+    font-size: clamp(14px, calc(4px + 4vw), 18px);
+    position: absolute;
+    width: max-content;
+    margin: 0;
+    z-index: 2;
+    
+    /* Forces text exactly below the phone on mobile */
+    /* bottom: clamp(-40px, calc(66.667px - 26.667vw), 0px); */
+    bottom: clamp(-20px, calc(300px + -80vw), 60px);
+    right: clamp(15px, calc(-136.243px + 50.414vw), 380px); 
+    /* Nudges it up/down to align perfectly with the arrow */
+    margin-top: 16px; 
+}
+
 
 /* --- Typography & Text Content --- */
+
 .plan-hero__header {
     display: flex;
     flex-direction: column;
-    align-items: flex-start; /* Left aligns the content */
+    align-items: flex-start;
 }
 
 .plan-hero__subtitle {
@@ -277,12 +341,6 @@ body {
 }
 
 /* --- Buttons --- */
-.plan-hero__actions {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    /* Note: Removed the old top/bottom margins because the parent gap: 40px handles it natively now */
-}
 
 .btn {
     display: flex;
@@ -343,52 +401,12 @@ body {
     font-weight: 700;
 }
 
-/* --- Visual / Mockup --- */
-.plan-hero__visual {
-    position: relative; /* CRITICAL: This is the anchor point for the absolute caption */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-/* The abstract background blob */
-.plan-hero__visual picture,
-.plan-hero__bg-graphic {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 120%; /* Lets it bleed out behind the phone */
-    max-width: 500px;
-    z-index: -1;
-}
-
-.plan-hero__mockup {
-    width: 100%;
-    max-width: 260px; /* Controls phone size on mobile */
-    z-index: 1;
-}
-
-.plan-hero__visual-caption {
-    font-family: var(--font-accent-2); /* Kalam */
-    font-size: 20px;
-    margin-top: 42px;
-    align-self: flex-end; /* Pushes it to the right on mobile */
-    margin-right: 64px;
-}
-
 /* --- Features List --- */
-.plan-hero__features {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 
 .feature-item {
     display: flex;
     align-items: center;
-    background-color: var(--purple-100); /* Soft background for mobile */
+    background-color: var(--purple-100); 
     padding: 16px;
     border-radius: 16px;
     gap: 16px;
@@ -412,11 +430,26 @@ body {
     color: var(--gray-500);
 }
 
+@media (min-width: 525px) {
+
+    .plan-hero__actions  { 
+        flex-direction: row; 
+        /* Your exact requested spacing! */
+        margin-top: 12px; 
+        margin-bottom: 40px; 
+    }
+
+    .plan-hero__features {
+        width: 478px;
+        margin: 0 auto;
+    }
+}
+
 /* 2. Desktop Breakpoint */
 @media (min-width: 1024px) {
     
     .header {
-        padding: 0px 48px;
+        padding: 0px clamp(48px, calc(-679.385px + 50.513vw), 3200px);
     }
 
     /* Hide mobile burger menu */
@@ -472,15 +505,15 @@ body {
         color: var(--white);
     }
 
-    .plan-hero {
+   .plan-hero {
         flex-direction: row; 
         align-items: center;
         justify-content: space-between;
         padding: 80px 48px;
-        gap: 0; /* Turn off the global mobile gap */
+        gap: 0; /* Turn off the mobile gap */
     }
 
-    /* Turn the wrapper BACK into a solid box to create the Left Column */
+    /* Turn the wrapper back into a solid "Left Column" */
     .plan-hero__text-content {
         display: flex; 
         flex-direction: column;
@@ -488,35 +521,32 @@ body {
         max-width: 600px; 
     }
 
+    /* Reset order properties for desktop columns */
     .plan-hero__header   { order: 0; }
-    .plan-hero__actions  { order: 0; margin-top: 48px; margin-bottom: 40px; flex-direction: row; }
-    .plan-hero__visual   { order: 0; flex: 1; }
-    .plan-hero__features { order: 0; display: flex; flex-direction: row; gap: 32px; }
-
-    /* Assign elements to their grid areas */
-    .plan-hero__header { grid-area: header; }
-    .plan-hero__actions {
+    
+    .plan-hero__actions  { 
+        order: 0; 
         flex-direction: row; 
-        margin-top: 48px;    /* 48px space above buttons */
-        margin-bottom: 40px; /* 40px space below buttons */
-    }
-    .plan-hero__visual {
-        flex: 1; 
-        margin: 0;
-        /* `position: relative` is inherited from the mobile base! */
+        /* Your exact requested spacing! */
+        margin-top: 48px; 
+        margin-bottom: 40px; 
     }
     
-    .plan-hero__features {
-        display: flex;
-        flex-direction: row;
-        gap: 32px;
+    .plan-hero__visual {
+        order: 0;
+        flex: 1;
+        padding-bottom: 0; /* Reset mobile padding buffer */
+    }
+    
+    .plan-hero__features { 
+        order: 0; 
+        display: flex; 
+        flex-direction: row; 
+        gap: 32px; 
     }
 
     /* Desktop Typography Overrides */
-    .plan-hero__title {
-        font-size: 70px;
-    }
-
+    .plan-hero__title { font-size: 70px; }
     .btn__text-small { font-size: 13px; }
     .btn__text-large { font-size: 24px; }
     .btn__text-default { font-size: 15px; }
@@ -531,23 +561,24 @@ body {
         padding: 0;
     }
 
-    .plan-hero__visual picture,
-    .plan-hero__bg-graphic {
-        max-width: 700px; /* Allows the background blob to expand */
+    /* Desktop Visual Sizing */
+    .plan-hero__bg-graphic,
+    .plan-hero__visual picture {
+        max-width: 700px; 
     }
 
     .plan-hero__mockup {
-        max-width: 320px; /* Larger phone on desktop */
+        max-width: 320px;
     }
 
-    /* Absolutely anchor the caption to the visual container */
+    /* Desktop Caption Coordinates */
     .plan-hero__visual-caption {
-        position: absolute;
-        width: max-content; /* Prevents the text from randomly wrapping */
-        margin: 0;          /* Resets mobile margins */
+        /* CRITICAL: Overrides the mobile 'top: 100%' rule */
+        top: auto; 
+        margin-top: 0; 
         
-        /* Adjust these two values to place it perfectly next to your arrow */
-        right: 20px; 
+        /* Your exact desktop placement relative to the visual container */
+        right: clamp(-60px, calc(-247.419px + 19.767vw), 40px); 
         bottom: 40%; 
     }
 }
