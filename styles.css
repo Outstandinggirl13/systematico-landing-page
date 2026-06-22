@@ -100,7 +100,7 @@ ol {
     --purple-300: #F1E8FB;
     --purple-250: #F5E3FB; /*footer light*/
     --purple-200: #EEE0FA; /*icon accent*/
-    --purple-150: #EDE5F9;
+    --purple-150: #FAF8FD;
     --purple-100: #FBF9FE; /*light background*/
 
     --pink-600: #AD748A;
@@ -543,6 +543,116 @@ body {
     filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.12)); /* Matches the soft app shadow */
 }
 
+/* ===========================
+   FEATURES OVERVIEW SECTION
+   =========================== */
+
+/* 1. Base Layout (Mobile First) */
+.features-overview {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* --- Typography & Header --- */
+.features-overview__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Left aligned on mobile */
+    gap: 12px;
+}
+
+.features-overview__subtitle {
+    font-family: var(--font-base, sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.features-overview__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--gray-900);
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+/* --- Cards Container --- */
+.features-overview__cards {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Stacked vertically on mobile */
+    gap: 16px;
+}
+
+/* --- Individual Cards --- */
+.feature-card {
+    display: flex;
+    align-items: center;
+    padding: 24px;
+    border-radius: 20px;
+    gap: 20px;
+    border: 2px solid transparent; 
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03); /* Soft, elevated drop shadow */
+}
+
+/* Card Themes (Using fallback hex codes in case you don't have these exact variables yet) */
+.feature-card--tasks {
+    background-color: var(--purple-150);
+    border-color: var(--purple-300);
+}
+
+.feature-card--assignments {
+    background-color: var(--pink-150);
+    border-color: var(--pink-300);
+}
+
+.feature-card--one-place {
+    background-color: var(--green-150);
+    border-color: var(--green-300);
+}
+
+/* --- Card Content --- */
+.feature-card__icon {
+    flex-shrink: 0;
+    width: 75px;
+    height: 75px;
+    object-fit: contain;
+}
+
+.feature-card__text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.feature-card__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin: 0;
+}
+
+.feature-card__description {
+    font-family: var(--font-base, sans-serif);
+    font-size: 15px;
+    font-weight: 400;
+    color: var(--gray-900);
+    line-height: 1.4;
+    margin: 0;
+}
+
 /* TABLETS */
 @media (min-width: 525px) {
 
@@ -582,6 +692,11 @@ body {
     .plan-hero__visual-caption {
         bottom: clamp(0px, calc(299.219px + -39.063vw), 50px);
         right: clamp(0px, calc(-163.134px + 27.65vw), 120px); 
+    }
+
+    .features-overview__cards {
+        width: clamp(477px, calc(-48px + 100vw), 576px);
+        margin: 0 auto;
     }
 }
 
@@ -775,5 +890,34 @@ body {
         max-width: 600px;
         /* Optional: nudges the background blob slightly to the right to match your design */
         left: 50%; 
+    }
+
+    .features-overview {
+        padding: 100px 48px;
+        gap: 64px;
+    }
+
+    /* Center the header text block */
+    .features-overview__header {
+        align-items: center; 
+        text-align: center;
+    }
+
+    .features-overview__title {
+        font-size: 56px; /* Matches scaling from previous section */
+    }
+
+    /* Swap cards to side-by-side */
+    .features-overview__cards {
+        flex-direction: row; 
+        justify-content: center;
+        gap: 24px;
+        width: 100%;
+    }
+
+    .feature-card {
+        flex: 1; /* Forces all three cards to be the exact same width */
+        max-width: 400px; /* Prevents them from stretching infinitely on ultra-wide screens */
+        padding: 32px 24px; /* Slightly more vertical breathing room on desktop */
     }
 }
