@@ -429,6 +429,121 @@ body {
     color: var(--gray-500);
 }
 
+/* ===========================
+   FEATURE HIGHLIGHT SECTION
+   =========================== */
+
+/* 1. Base Layout (Mobile First) */
+.feature-highlight {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 64px;
+    /* max-width: 1440px; */
+    margin: 0 auto;
+    overflow: hidden;
+    background-color: var(--purple-100);
+}
+
+/* --- Typography & Text Content --- */
+.feature-highlight__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.feature-highlight__subtitle {
+    font-family: var(--font-base, sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple-600);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.feature-highlight__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--gray-900);
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+.feature-highlight__description {
+    font-family: var(--font-base, sans-serif);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--gray-900);
+    margin: 0 0 16px 0; /* Extra space before the checklist */
+}
+
+/* --- Checklist --- */
+.feature-highlight__checklist {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center; /* Centers the icon perfectly if text wraps to two lines */
+    gap: 16px;
+}
+
+.check-item__icon {
+    flex-shrink: 0;
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+}
+
+.check-item__text {
+    font-family: var(--font-base, sans-serif);
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gray-900);
+    line-height: 1.4;
+}
+
+/* --- Visuals & Mockup --- */
+.feature-highlight__visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    max-width: 724px;
+    margin: 0 auto;
+}
+
+.feature-highlight__bg-graphic {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 140%; /* Allows the blob to bleed comfortably outside the phone */
+    max-width: 460px;
+    z-index: 0;
+}
+
+.feature-highlight__mockup {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.12)); /* Matches the soft app shadow */
+}
+
+/* TABLETS */
 @media (min-width: 525px) {
 
 .plan-hero {
@@ -454,6 +569,7 @@ body {
         width: calc(50% - 60px);
         margin: 0;
         order: 3; /* Forces it left */
+        /* padding-top: 80px; */
     }
 
     .plan-hero__visual {
@@ -469,7 +585,7 @@ body {
     }
 }
 
-/* 2. Desktop Breakpoint */
+/* DESKTOP */
 @media (min-width: 1024px) {
     
     .header {
@@ -566,7 +682,8 @@ body {
         padding-right: 0; /* Reset tablet padding */
         display: flex; 
         flex-direction: row; 
-        gap: 32px; 
+        gap: 32px;
+        padding-top: 0px;
     }
 
     /* Reset tablet constraints for the right column visual */
@@ -612,5 +729,51 @@ body {
         /* Your exact desktop placement relative to the visual container */
         right: clamp(-60px, calc(-247.419px + 19.767vw), 40px); 
         bottom: 40%; 
+    }
+
+    .feature-highlight {
+        /* THE MAGIC TRICK: Reverses the HTML order so the image is on the left */
+        flex-direction: row-reverse; 
+        align-items: center;
+        justify-content: center;
+        padding: 100px 48px;
+        gap: 80px;
+    }
+
+    /* Constrain the text container so it doesn't stretch too wide */
+    .feature-highlight__content {
+        flex: 1;
+        max-width: 540px; 
+        padding-right: 40px; /* Gives breathing room on ultra-wide screens */
+    }
+
+    /* Allow the visual to take up the remaining left-side space */
+    .feature-highlight__visual {
+        flex: 1;
+        margin: 0;
+    }
+
+    /* Scale up typography for desktop */
+    .feature-highlight__title { 
+        font-size: 56px; 
+    }
+    
+    .feature-highlight__description { 
+        font-size: 20px; 
+    }
+    
+    .check-item__text { 
+        font-size: 18px; 
+    }
+
+    /* Scale up visuals */
+    .feature-highlight__mockup {
+        max-width: 320px;
+    }
+
+    .feature-highlight__bg-graphic {
+        max-width: 600px;
+        /* Optional: nudges the background blob slightly to the right to match your design */
+        left: 50%; 
     }
 }
