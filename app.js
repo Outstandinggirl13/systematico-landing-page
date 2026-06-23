@@ -34,3 +34,25 @@ document.querySelectorAll('.faq-item__header').forEach(button => {
         button.setAttribute('aria-expanded', !expanded);
     });
 });
+
+const emailCard = document.getElementById('email-card');
+
+if (emailCard) {
+    emailCard.addEventListener('click', (e) => {
+        // Copy the email to the clipboard automatically
+        navigator.clipboard.writeText('systematicoapp@gmail.com');
+        
+        // Find the action text span and change it temporarily
+        const actionText = emailCard.querySelector('.contact-card__action-text');
+        const originalText = actionText.innerHTML;
+        
+        actionText.innerHTML = 'Copied to clipboard! ✓';
+        actionText.style.color = '#10B981'; // Optional: changes text to a success green
+        
+        // Reset the text back to normal after 2.5 seconds
+        setTimeout(() => {
+            actionText.innerHTML = originalText;
+            actionText.style.color = ''; 
+        }, 2500);
+    });
+}
