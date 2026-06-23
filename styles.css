@@ -1227,7 +1227,7 @@ body {
     gap: 32px;
     position: relative;
     overflow: hidden;
-    margin: 40px 0;
+    margin: 40px 0 0 0;
 }
 
 .cta-banner__title {
@@ -1276,6 +1276,73 @@ body {
     .cta-banner__graphic--stars {
         top: 160px;
     }
+}
+
+/* =========================================
+   MOBILE FIRST (Stacked Layout)
+   ========================================= */
+.footer {
+    background-color: var(--purple-600);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 24px;
+    gap: 48px; /* Space between logo, nav, and socials */
+}
+
+/* 1. BRANDING */
+.footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo icon and text */
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer__logo {
+    filter: brightness(0) invert(1);
+}
+
+.footer__title {
+    font-family: var(--font-accent-1);
+    font-size: 24px;
+    padding-top: 16px;
+}
+
+/* 2. NAVIGATION */
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px; /* Vertical space between links */
+}
+
+.footer__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+}
+
+.footer__link:hover {
+    opacity: 0.8; /* Simple interaction feedback */
+}
+
+/* 3. SOCIALS */
+.footer__socials {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* Space between the two icons */
+}
+
+.social-link {
+    display: flex;
+    transition: transform 0.2s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-2px); /* Slight bounce on hover */
 }
 
 /* TABLETS */
@@ -2037,18 +2104,29 @@ body {
         flex-shrink: 0;
     }
 
-    /* .cta-banner__graphic--clock {
-        height: 180px;
-        width: 192px;
-        left: 0px;
-        top: 0px;
+    .footer {
+        flex-direction: row;
+        padding: 32px clamp(64px, calc(-679.385px + 50.513vw), 3200px); /* Adjust lateral padding to match your site container */
+        gap: 0; 
     }
 
-    .cta-banner__graphic--stars {
-        top: 25%;
-        right: 0px;
-    } */
+    /* Assigning flex: 1 to all three sections guarantees the middle section is perfectly centered */
+    .footer__brand {
+        flex: 1;
+        justify-content: flex-start;
+    }
 
+    .footer__nav {
+        flex: 1;
+        flex-direction: row; /* Changes links to sit side-by-side */
+        justify-content: center;
+        gap: 32px; /* Horizontal space between links */
+    }
+
+    .footer__socials {
+        flex: 1;
+        justify-content: flex-end; /* Pushes social icons to the far right */
+    }
 }
 
 @media (min-width: 1440px) {
