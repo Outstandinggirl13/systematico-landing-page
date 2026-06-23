@@ -1532,7 +1532,7 @@ body {
     /* The individual cards handle the width */
     .audience-card {
         flex: 0 0 calc(50% - 12px); /* 50% width minus half the 24px gap */
-        max-width: calc(50% - 12px);
+        max-width: 371px;
     }
 
     /* Graphic positioning */
