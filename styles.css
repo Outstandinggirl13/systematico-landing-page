@@ -1214,6 +1214,70 @@ body {
     transform: rotate(180deg);
 }
 
+/* ===========================
+   CTA BANNER SECTION
+   =========================== */
+.cta-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-color: var(--purple-250); /* Reusing your theme color */
+    padding: 48px 24px;
+    gap: 32px;
+    position: relative;
+    overflow: hidden;
+    margin: 40px 0;
+}
+
+.cta-banner__title {
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--gray-900, #111827);
+    margin-bottom: 8px;
+}
+
+.cta-banner__subtitle {
+    font-size: 18px;
+    color: var(--gray-900, #111827);
+    margin: 0;
+}
+
+/* Graphic positioning */
+.cta-banner__graphic--clock {
+    position: absolute;
+    bottom: 50px; /* Adjust to "sink" slightly into the bottom edge */
+    left: clamp(0px, calc(-148.837px + 46.512vw), 200px);
+    z-index: 1;    /* Keeps it behind the button/text */
+    width: 192px;
+}
+
+/* Position the Stars */
+.cta-banner__graphic--stars {
+    position: absolute;
+    top: 200px;
+    right: clamp(20px, calc(-128.837px + 46.512vw), 220px);
+    z-index: 1;
+    width: 123px;
+}
+
+/* Adjust Content/Button z-index so they sit ON TOP of the graphics */
+.cta-banner__content,
+.cta-banner__btn {
+    position: relative;
+    z-index: 2; /* Ensures text and buttons remain clickable */
+}
+
+.cta-banner__content {
+    padding-bottom: 80px;
+}
+
+@media (min-width: 372px) {
+    .cta-banner__graphic--stars {
+        top: 160px;
+    }
+}
+
 /* TABLETS */
 @media (min-width: 525px) {
 
@@ -1258,6 +1322,12 @@ body {
     .features-overview__cards {
         width: clamp(477px, calc(-48px + 100vw), 576px);
         margin: 0 auto;
+    }
+}
+
+@media (min-width: 590px) {
+    .cta-banner__graphic--stars {
+        top: 120px;
     }
 }
 
@@ -1396,6 +1466,18 @@ body {
     .audience-card {
         flex: 0 0 calc(50% - 12px); /* 50% width minus half the 24px gap */
         max-width: calc(50% - 12px);
+    }
+
+    /* Graphic positioning */
+    .cta-banner__graphic--clock {
+        bottom: 50px; /* Adjust to "sink" slightly into the bottom edge */
+        left: clamp(200px, calc(-73.723px + 36.496vw), 300px);
+    }
+
+    /* Position the Stars */
+    .cta-banner__graphic--stars {
+        top: 120px;
+        right: clamp(220px, calc(-163.212px + 51.095vw), 360px);
     }
 
 }
@@ -1913,5 +1995,71 @@ body {
         /* Distribute 3 cards evenly */
         flex: 1;
         max-width: none;
+    }
+
+       .cta-banner {
+        flex-direction: row;
+        padding: 0 clamp(48px, calc(-679.385px + 50.513vw), 3200px); /* Removes left padding so clock can align left */
+        gap: 0; /* We manage spacing per-element below */
+    }
+
+    /* 1. CLOCK (Moved to Far Left) */
+    .cta-banner__graphic--clock {
+        order: 1;
+        margin-left: -10px; /* Adjust this to sink it into the left edge if desired */
+        flex-shrink: 0;
+        top: 0;
+        left: clamp(120px, calc(-76.923px + 19.231vw), 200px);
+    }
+
+    /* 2. TEXT (Dead Center) */
+    .cta-banner__content {
+        order: 2;
+        flex: 1; /* CRITICAL: Forces text container to fill all empty space */
+        text-align: center; /* Centers the text within that empty space */
+        padding: 40px 24px;
+        margin-left: 193px;
+    }
+
+    /* 3. STARS (Right Side) */
+    .cta-banner__graphic--stars {
+        order: 3;
+        margin-right: 32px; /* Space between the stars and the button */
+        flex-shrink: 0;
+        top: clamp(20px, calc(54.615px + -2.404vw), 30px);
+        /* right: 320px; */
+        right: clamp(270px, calc(196.154px + 7.212vw), 300px);
+    }
+
+    /* 4. BUTTON (Far Right) */
+    .cta-banner__btn {
+        order: 4;
+        flex-shrink: 0;
+    }
+
+    /* .cta-banner__graphic--clock {
+        height: 180px;
+        width: 192px;
+        left: 0px;
+        top: 0px;
+    }
+
+    .cta-banner__graphic--stars {
+        top: 25%;
+        right: 0px;
+    } */
+
+}
+
+@media (min-width: 1440px) {
+    .cta-banner__graphic--clock {
+        top: 0;
+        left: clamp(220px, calc(-490.769px + 49.359vw), 3300px);
+    }
+
+    /* 3. STARS (Right Side) */
+    .cta-banner__graphic--stars {
+        top: 20px;
+        right: clamp(320px, calc(-402.308px + 50.16vw), 3450px);
     }
 }
