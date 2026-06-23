@@ -1,0 +1,265 @@
+/* ===========================
+   FONTS
+   =========================== */
+
+/* inter-regular - cyrillic_latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/inter-v20-cyrillic_latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* inter-500 - cyrillic_latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../assets/fonts/inter-v20-cyrillic_latin-500.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+/* inter-700 - cyrillic_latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../assets/fonts/inter-v20-cyrillic_latin-700.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* borel-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Borel';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/borel-v10-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* kalam-regular - latin */
+@font-face {
+  font-display: swap; /* Check https://developer.mozilla.org/en-US/docs/Web/CSS/@font-face/font-display for other options. */
+  font-family: 'Kalam';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../assets/fonts/kalam-v18-latin-regular.woff2') format('woff2'); /* Chrome 36+, Opera 23+, Firefox 39+, Safari 12+, iOS 10+ */
+}
+
+/* ===========================
+   RESET
+   =========================== */
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+      
+img,
+picture,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+      
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    color: inherit;
+    background: none;
+    border-color: transparent;
+}
+      
+a {
+    text-decoration: none;
+    color: inherit;
+}
+      
+ul,
+ol {
+    list-style-type: none;
+}
+      
+/* ===========================
+       CSS VARIABLES
+   =========================== */
+      
+:root {
+      
+    /* Primary */
+
+    --purple-700: #401d60; /*very dark (check icon) accent*/
+    --purple-600: #966AB5; /*dark icon accent*/
+    --purple-550: #AA7FCF; /*buttons*/
+    --purple-500: #B588DB; /*accent text*/
+    --purple-300: #F1E8FB;
+    --purple-250: #F5E3FB; /*footer light*/
+    --purple-200: #EEE0FA; /*icon accent*/
+    --purple-150: #FAF8FD;
+    --purple-100: #FBF9FE; /*light background*/
+
+    --pink-600: #AD748A;
+    --pink-300: #FDE3EB;
+    --pink-150: #FDF8FA;
+
+    --green-600: #85D2C3;
+    --green-300: #E6F4EE;
+    --green-150: #F6FCF8;
+    
+    /* Neutral */
+    
+    --gray-900: hsl(0, 0%, 16%);
+    --gray-700: hsl(210, 10%, 33%);
+    --gray-500: hsl(201, 11%, 66%);
+    --gray-100: hsl(220, 18%, 97%);
+
+    --white: hsl(0, 0%, 100%);
+      
+    --font-base: 'Inter', sans-serif;
+    --font-accent-1: 'Borel', sans-serif;
+    --font-accent-2: 'Kalam', sans-serif;
+
+}
+   
+/* ===========================
+      BASE
+   =========================== */
+   
+body {
+    font-family: var(--font-base);
+    color: var(--gray-900);
+    background-color: var(--white);
+    font-size: 16px;
+}
+
+html { scroll-behavior: smooth; }
+
+/* 1. Mobile Base Styles (Default) */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: start; /* Pushes brand to left, burger to right */
+    padding: 0px 24px;
+    margin: 0 auto;
+    position: sticky;
+    top: 0;
+    z-index: 999; 
+    background-color: var(--white);
+}
+
+.header__brand {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Space between logo and text */
+}
+
+.header__title {
+    font-family: var(--font-accent-1); /* Borel */
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--gray-900);
+    padding-top: 16px; /* Small nudge to visually align script font with the logo */
+}
+
+/* =========================================
+   MOBILE FIRST (Stacked Layout)
+   ========================================= */
+.footer {
+    background-color: var(--purple-600);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 64px 24px;
+    gap: 48px; /* Space between logo, nav, and socials */
+}
+
+/* 1. BRANDING */
+.footer__brand {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between logo icon and text */
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer__logo {
+    filter: brightness(0) invert(1);
+}
+
+.footer__title {
+    font-family: var(--font-accent-1);
+    font-size: 24px;
+    padding-top: 16px;
+}
+
+/* 2. NAVIGATION */
+.footer__nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px; /* Vertical space between links */
+}
+
+.footer__link {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    transition: opacity 0.2s ease;
+}
+
+.footer__link:hover {
+    opacity: 0.8; /* Simple interaction feedback */
+}
+
+/* 3. SOCIALS */
+.footer__socials {
+    display: flex;
+    align-items: center;
+    gap: 24px; /* Space between the two icons */
+}
+
+.social-link {
+    display: flex;
+    transition: transform 0.2s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-2px); /* Slight bounce on hover */
+}
+
+@media (min-width: 1024px) {
+
+    .header {
+        padding: 0px clamp(48px, calc(-679.385px + 50.513vw), 3200px);
+    }
+
+     .footer {
+        flex-direction: row;
+        padding: 32px clamp(64px, calc(-679.385px + 50.513vw), 3200px); /* Adjust lateral padding to match your site container */
+        gap: 0; 
+    }
+
+    /* Assigning flex: 1 to all three sections guarantees the middle section is perfectly centered */
+    .footer__brand {
+        flex: 1;
+        justify-content: flex-start;
+    }
+
+    .footer__nav {
+        flex: 1;
+        flex-direction: row; /* Changes links to sit side-by-side */
+        justify-content: center;
+        gap: 32px; /* Horizontal space between links */
+    }
+
+    .footer__socials {
+        flex: 1;
+        justify-content: flex-end; /* Pushes social icons to the far right */
+    }
+}
