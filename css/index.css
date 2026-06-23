@@ -39,9 +39,9 @@
     display: none; 
 }
 
-.download__btn-img {
+/* .download__btn-img {
     filter: brightness(0) invert(1);
-}
+} */
 
 .header__burger-btn {
     display: flex;

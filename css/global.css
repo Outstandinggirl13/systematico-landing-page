@@ -191,9 +191,9 @@ html { scroll-behavior: smooth; }
     color: #ffffff;
 }
 
-.footer__logo {
+/* .footer__logo {
     filter: brightness(0) invert(1);
-}
+} */
 
 .footer__title {
     font-family: var(--font-accent-1);
