@@ -1131,6 +1131,89 @@ body {
     width: 135px;
 }
 
+/* ===========================
+   FAQ SECTION
+   =========================== */
+.faq {
+    padding: 80px 24px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq__header {
+    text-align: center;
+    margin-bottom: 48px;
+}
+
+.faq__subtitle {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple-600, #966AB5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.faq__title {
+    font-size: 40px;
+    font-weight: 800;
+    color: var(--gray-900, #111827);
+}
+
+.faq__list {
+    list-style: none;
+    padding: 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.faq-item__header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+
+.faq-item__question {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--gray-900, #111827);
+    margin: 0;
+}
+
+.faq-item__icon {
+    transition: transform 0.3s ease;
+}
+
+/* Accordion Logic */
+.faq-item__content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+}
+
+.faq-item__inner {
+    padding-bottom: 24px;
+    color: #4B5563;
+    line-height: 1.6;
+}
+
+/* State: Open */
+[aria-expanded="true"] + .faq-item__content {
+    max-height: 200px; /* Adjust based on content length */
+}
+
+[aria-expanded="true"] .faq-item__icon {
+    transform: rotate(180deg);
+}
+
 /* TABLETS */
 @media (min-width: 525px) {
 

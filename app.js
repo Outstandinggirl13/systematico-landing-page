@@ -20,3 +20,17 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+document.querySelectorAll('.faq-item__header').forEach(button => {
+    button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        
+        // Close other items (optional - remove if you want multiple open)
+        document.querySelectorAll('.faq-item__header').forEach(btn => 
+            btn.setAttribute('aria-expanded', 'false')
+        );
+        
+        // Toggle current
+        button.setAttribute('aria-expanded', !expanded);
+    });
+});
