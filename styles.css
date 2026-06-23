@@ -990,6 +990,147 @@ body {
     display: none; /* Hides the second phone completely on mobile */
 }
 
+/* ===========================
+   TARGET AUDIENCE SECTION
+   =========================== */
+
+/* 1. Base Layout (Mobile First) */
+.target-audience {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 24px;
+    gap: 40px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+/* --- Header --- */
+.target-audience__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.target-audience__subtitle {
+    font-family: var(--font-base, sans-serif);
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--purple-600, #966AB5);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.target-audience__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--gray-900, #111827);
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+/* --- Cards Container --- */
+.target-audience__cards {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* --- Individual Cards Base --- */
+.audience-card {
+    position: relative;
+    display: flex;
+    align-items: center; /* Centers the text block vertically */
+    padding: 32px 24px;
+    border-radius: 24px;
+    min-height: 200px;
+    max-width: 350px;
+    overflow: hidden; /* This cleanly crops the characters at the bottom corners */
+    border: 2px solid transparent; 
+}
+
+/* Card Themes */
+.audience-card--students {
+    background-color: var(--purple-150, #FAF8FD);
+    border-color: var(--purple-300, #F1E8FB);
+}
+
+.audience-card--professionals {
+    background-color: var(--pink-150, #FDF8FA);
+    border-color: var(--pink-300, #FDE3EB);
+}
+
+.audience-card--goal-setters {
+    background-color: var(--green-150, #F6FCF8);
+    border-color: var(--green-300, #E6F4EE);
+}
+
+/* --- Text Layer --- */
+.audience-card__text {
+    position: relative;
+    z-index: 2; /* Keeps text above the illustrations */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Limit the width so text never crashes into the characters */
+    max-width: 55%; 
+}
+
+.audience-card__title {
+    font-family: var(--font-base, sans-serif);
+    font-size: clamp(16px, calc(10px + 2vw), 18px);
+    font-weight: 800;
+    color: var(--gray-900, #111827);
+    margin: 0;
+}
+
+.audience-card__description {
+    font-family: var(--font-base, sans-serif);
+    font-size: clamp(12px, calc(6px + 2vw), 14px);
+    font-weight: 500;
+    color: var(--gray-900, #111827);
+    margin: 0;
+    line-height: 1.4;
+}
+
+.audience-card__description-highlight {
+    padding-left: clamp(0px, calc(120px + -30vw), 30px);
+}
+
+/* --- Illustrations Layer --- */
+.audience-card__image {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    object-fit: contain;
+}
+
+/* Mobile: Alternating Layouts */
+.audience-card--students .audience-card__image {
+    right: 0;
+    width: 140px;
+}
+
+.audience-card--professionals .audience-card__image {
+    left: 0;
+    width: 145px;
+}
+.audience-card--professionals .audience-card__text {
+    /* Magic trick: pushes the text fully to the right to clear the image */
+    margin-left: auto; 
+}
+
+.audience-card--goal-setters .audience-card__image {
+    right: 0;
+    width: 135px;
+}
+
 /* TABLETS */
 @media (min-width: 525px) {
 
@@ -1158,6 +1299,22 @@ body {
         width: 45%;
         max-width: 280px;
     }
+
+/* The container handles the wrapping and alignment */
+    .target-audience__cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 24px;
+    }
+
+    /* The individual cards handle the width */
+    .audience-card {
+        flex: 0 0 calc(50% - 12px); /* 50% width minus half the 24px gap */
+        max-width: calc(50% - 12px);
+    }
+
 }
 
 /* DESKTOP */
@@ -1605,5 +1762,73 @@ body {
         display: block; /* Turns the second phone back on! */
         width: 45%;
         max-width: 280px;
+    }
+
+    .target-audience {
+        padding: 100px 48px;
+        gap: 64px;
+    }
+
+    /* Center Header */
+    .target-audience__header {
+        align-items: center;
+        text-align: center;
+    }
+
+    .target-audience__title {
+        font-size: 56px;
+    }
+
+    /* Side-by-Side Cards */
+    .target-audience__cards {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 24px;
+        max-width: 100%;
+    }
+
+    .audience-card {
+        flex: 1; /* Divides into 3 equal columns */
+        padding: 40px 24px;
+        min-height: 200px; 
+    }
+
+    /* Scale up fonts slightly for desktop readability */
+    .audience-card__title { font-size: clamp(16px, calc(6.154px + 0.962vw), 20px); }
+    .audience-card__description { font-size: clamp(12px, calc(4.615px + 0.721vw), 15px); }
+
+    /* RESET: On Desktop, ALL images move to the left */
+    .audience-card__image {
+        left: 0 !important;
+        right: auto !important;
+    }
+
+    /* Fine-tune desktop image sizing */
+    .audience-card--students .audience-card__image { width: 150px; }
+    .audience-card--professionals .audience-card__image { width: 160px; }
+    .audience-card--goal-setters .audience-card__image { width: 145px; }
+
+    /* RESET: On Desktop, ALL text moves to the right */
+    .audience-card__text {
+        margin-left: clamp(120px, calc(-8px + 12.5vw), 172px) !important;
+        max-width: 55% !important; /* Ensures text stays in the right half */
+    }
+
+    .audience-card__description-highlight {
+        padding-left: clamp(0px, calc(69.231px + -4.808vw), 20px);
+    }
+
+    .target-audience__cards {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap; /* Forces 3-in-a-row */
+        justify-content: center;
+        gap: 24px;
+    }
+
+    .audience-card {
+        /* Distribute 3 cards evenly */
+        flex: 1;
+        max-width: none;
     }
 }
