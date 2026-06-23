@@ -125,6 +125,10 @@ ol {
     --font-accent-2: 'Kalam', sans-serif;
 
 }
+
+:root {
+  color-scheme: light only;
+}
    
 /* ===========================
       BASE
