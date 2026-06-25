@@ -1914,3 +1914,9 @@
         right: clamp(320px, calc(-402.308px + 50.16vw), 3450px);
     }
 }
+
+@media (prefers-color-scheme: dark) {
+  .cta-banner__graphic--clock-background {
+    display: none;
+  }
+}
