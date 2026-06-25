@@ -1111,6 +1111,7 @@
     left: clamp(0px, calc(-148.837px + 46.512vw), 200px);
     z-index: 1;    /* Keeps it behind the button/text */
     width: 192px;
+    filter: drop-shadow(-7px 14px 6px rgba(193, 166, 217, 0.7));
 }
 
 /* Position the Stars */
