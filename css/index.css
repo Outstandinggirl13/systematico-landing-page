@@ -1920,7 +1920,7 @@
         background-color: var(--purple-250);
     }
 
-    /* .cta-banner__graphic--clock-background {
+    .cta-banner__graphic--clock-background {
         display: none;
-    } */
+    }
 }
