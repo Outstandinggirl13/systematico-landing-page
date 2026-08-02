@@ -49,11 +49,13 @@
 
 /* Lists */
 .legal-content ul {
+    list-style-type: disc; /* Turns the standard bullet markers back on */
     margin-bottom: 32px;
-    padding-left: 24px;
+    padding-left: 24px; /* Ensures the bullets aren't pushed off the edge of the screen */
 }
 
 .legal-content li {
+    display: list-item; /* Forces the browser to treat this as a bulleted item, overriding global resets */
     font-size: 16px;
     color: #374151;
     margin-bottom: 12px;

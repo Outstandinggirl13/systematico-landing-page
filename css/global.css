@@ -243,27 +243,68 @@ html { scroll-behavior: smooth; }
         padding: 0px clamp(48px, calc(-679.385px + 50.513vw), 3200px);
     }
 
-     .footer {
+    .footer {
         flex-direction: row;
-        padding: 32px clamp(64px, calc(-679.385px + 50.513vw), 3200px); /* Adjust lateral padding to match your site container */
-        gap: 0; 
+        padding: 32px clamp(64px, calc(-679.385px + 50.513vw), 3200px);
+        gap: 32px; /* Safety gap so elements never touch */
+        justify-content: space-between; 
     }
 
-    /* Assigning flex: 1 to all three sections guarantees the middle section is perfectly centered */
+    /* 1. BRAND: Takes only the exact space it needs to fit the logo and text */
+    .footer__brand {
+        flex: 0 0 auto; 
+        display: flex;
+        align-items: center;
+    }
+
+    /* 2. NAV: Acts as a spring. It takes up all remaining space between 
+       the logo and socials, and perfectly centers the links inside that space */
+    .footer__nav {
+        flex: 1 1 auto; 
+        display: flex;
+        flex-direction: row; 
+        justify-content: center;
+        align-items: center;
+        gap: 48px; /* You can drop this to 32px if it ever feels too tight */
+    }
+
+    .footer__link {
+        white-space: nowrap; 
+        line-height: 1.3;
+    }
+
+    /* 3. SOCIALS: Takes only the exact space it needs to fit the icons */
+    .footer__socials {
+        flex: 0 0 auto;
+        display: flex;
+        justify-content: flex-end; 
+        align-items: center;
+    }
+}
+
+@media (min-width: 1140px) {
+
+    .footer {
+        gap: 24px; /* A small safety gap so they never physically touch on smaller screens */
+    }
+
+    /* flex: 1 makes this take up exactly half of the REMAINING empty space */
     .footer__brand {
         flex: 1;
+        display: flex; 
         justify-content: flex-start;
     }
 
+    /* THE FIX: flex: 0 0 auto tells the nav to take exactly the width of its text, no more, no less */
     .footer__nav {
-        flex: 1;
-        flex-direction: row; /* Changes links to sit side-by-side */
-        justify-content: center;
-        gap: 32px; /* Horizontal space between links */
+        flex: 0 0 auto; 
+        display: flex;
+        gap: 48px; 
     }
 
+    /* flex: 1 makes this take up the other half of the empty space, perfectly balancing the brand side */
     .footer__socials {
         flex: 1;
-        justify-content: flex-end; /* Pushes social icons to the far right */
     }
 }
+
